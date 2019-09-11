@@ -4,6 +4,6 @@ class FinderExceptions(Exception):
         self.message = message
 
 
-class SignNotFound(FinderExceptions):
+class CommentSignNotFound(FinderExceptions):
     def __init__(self):
         super().__init__('Comment sign for given file extension not found')
