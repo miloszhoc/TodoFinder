@@ -1,33 +1,35 @@
 import argparse
-from exceptions.exceptions import *
-from comment_sign import ext_to_comment_sign
-from catalog_walker import CatalogWalker
-from todo_searcher import TodoSearcher
+from api import Api
 
 
+# todo add support for multiline comments
 # todo add support for multiple file extensions
 def main():
-    # todo add support for single file
     parser = argparse.ArgumentParser(description='Todo and Fixme finder')
-    parser.add_argument('path', action='store', help='path to catalog')
-    parser.add_argument('ext', action='store', help='file extension')
-    parser.add_argument('-f', '--fixme', action='store_true', help='show only FIXME')
-    parser.add_argument('-t', '--todo', action='store_true', help='show only TODO')
-    parser.add_argument('-e', '--exclude', action='store', help='excluded files and folders', nargs='*')
+
+    subparsers = parser.add_subparsers(dest='subparser_name')
+
+    one_file = subparsers.add_parser('file', help='show todo/fixme for one file')
+    one_file.add_argument('file_name', action='store', help='file to open')
+    one_file.add_argument('-f', '--fixme', action='store_true', help='show only FIXME')
+    one_file.add_argument('-t', '--todo', action='store_true', help='show only TODO')
+
+    catalog = subparsers.add_parser('catalog', help='show todo/fixme for all files in catalog')
+    catalog.add_argument('path', action='store', help='path to catalog')
+    catalog.add_argument('ext', action='store', help='file extension')
+    catalog.add_argument('-f', '--fixme', action='store_true', help='show only FIXME')
+    catalog.add_argument('-t', '--todo', action='store_true', help='show only TODO')
+    catalog.add_argument('-e', '--exclude', action='store', help='excluded files and folders', nargs='*')
 
     args = parser.parse_args()
 
-    try:
-        comment_sign = ext_to_comment_sign(args.ext.lower())
-    except CommentSignNotFound as e:
-        print(e.message)
+    if args.subparser_name == 'file':
+        Api.find_in_file(args.file_name, args.todo, args.fixme)
+    elif args.subparser_name == 'catalog':
+        Api.find_in_catalog(args.ext, args.path, args.exclude, args.todo, args.fixme)
+
     else:
-        files = CatalogWalker(args.path, args.ext, args.exclude)
-
-        searcher = TodoSearcher(args.todo, args.fixme, comment_sign)
-
-        for file in files.walk():
-            searcher.search(file)
+        print('todo and fixme finder')
 
 
 if __name__ == '__main__':
