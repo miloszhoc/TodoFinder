@@ -1,7 +1,7 @@
 from exceptions.exceptions import *
-from comment_sign import ext_to_comment_sign
-from catalog_walker import CatalogWalker
-from todo_searcher import TodoSearcher
+from finder_files.comment_sign import ext_to_comment_sign
+from finder_files.catalog_walker import CatalogWalker
+from finder_files.todo_searcher import TodoSearcher
 
 
 class Api:
