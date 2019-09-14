@@ -1,5 +1,5 @@
 import pytest
-import comment_sign
+from finder import comment_sign
 from exceptions.exceptions import *
 
 

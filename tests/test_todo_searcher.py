@@ -1,5 +1,5 @@
 import unittest
-from todo_searcher import TodoSearcher
+from finder.todo_searcher import TodoSearcher
 
 
 class TestTodoSearcher(unittest.TestCase):

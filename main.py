@@ -1,5 +1,5 @@
 import argparse
-from api import Api
+from finder.api import Api
 
 
 # todo add support for multiline comments

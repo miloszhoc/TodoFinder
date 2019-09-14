@@ -1,5 +1,5 @@
 import unittest
-from catalog_walker import CatalogWalker
+from finder.catalog_walker import CatalogWalker
 import sys
 
 platform = sys.platform
