@@ -7,7 +7,7 @@ from finder.todo_searcher import TodoSearcher
 class Api:
     @staticmethod
     def find_in_file(f_name: str, todo: bool, fixme: bool):
-        ext = '.' + f_name.split('.')[1]  # fixme find better way to get extension
+        ext = '.' + f_name.split('.')[-1]
         try:
             comment_sign = ext_to_comment_sign(ext)
         except CommentSignNotFound as e:
