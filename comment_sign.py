@@ -2,7 +2,7 @@ from exceptions.exceptions import *
 
 
 # todo: add more extensions
-def ext_to_comment_sign(ext):
+def ext_to_comment_sign(ext: str):
     signs = {('.py', '.sh'): '#',
              ('.java', '.c', '.cs', '.cpp', '.css', '.go', '.php', '.js'): '//',
              ('.xml', '.html', '.htm'): '<!--',
