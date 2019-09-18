@@ -14,7 +14,7 @@ class Api:
             print(e.message)
         else:
             searcher = TodoSearcher(todo=todo, fixme=fixme, comment_sign=comment_sign)
-            searcher.search(f_name)
+            searcher.search(f_name, single_file=True)
 
     @staticmethod
     def find_in_catalog(ext: str, path, exclude, todo: bool, fixme: bool):
@@ -31,5 +31,5 @@ class Api:
         except NotADirectoryError:
             print('Not a directory')
         else:
-            for file in files.walk():
-                searcher.search(file)
+            files = files.walk()
+            searcher.search(files)
