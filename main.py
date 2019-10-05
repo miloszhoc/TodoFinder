@@ -9,8 +9,8 @@ def main():
 
     subparsers = parser.add_subparsers(dest='subparser_name')
 
-    one_file = subparsers.add_parser('file', help='show todo/fixme for one file')
-    one_file.add_argument('file_name', action='store', help='file to open')
+    one_file = subparsers.add_parser('files', help='show todo/fixme for one or more files')
+    one_file.add_argument('file_name', action='store', help='file to open', nargs='*')
     one_file.add_argument('-f', '--fixme', action='store_true', help='show only FIXME')
     one_file.add_argument('-t', '--todo', action='store_true', help='show only TODO')
 
@@ -23,7 +23,7 @@ def main():
 
     args = parser.parse_args()
 
-    if args.subparser_name == 'file':
+    if args.subparser_name == 'files':
         Api.find_in_file(args.file_name, args.todo, args.fixme)
     elif args.subparser_name == 'catalog':
         Api.find_in_catalog(args.ext, args.path, args.exclude, args.todo, args.fixme)

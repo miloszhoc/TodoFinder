@@ -6,15 +6,16 @@ from finder.todo_searcher import TodoSearcher
 
 class Api:
     @staticmethod
-    def find_in_file(f_name: str, todo: bool, fixme: bool):
-        ext = '.' + f_name.split('.')[-1]
-        try:
-            comment_sign = ext_to_comment_sign(ext)
-        except CommentSignNotFound as e:
-            print(e.message)
-        else:
-            searcher = TodoSearcher(todo=todo, fixme=fixme, comment_sign=comment_sign)
-            searcher.search(f_name, single_file=True)
+    def find_in_file(files: list, todo: bool, fixme: bool):
+        for file in files:
+            ext = '.' + file.split('.')[-1]
+            try:
+                comment_sign = ext_to_comment_sign(ext)
+            except CommentSignNotFound as e:
+                print(e.message)
+            else:
+                searcher = TodoSearcher(todo=todo, fixme=fixme, comment_sign=comment_sign)
+                searcher.search(file, single_file=True)
 
     @staticmethod
     def find_in_catalog(ext: str, path, exclude, todo: bool, fixme: bool):
