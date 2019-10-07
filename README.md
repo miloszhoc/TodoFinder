@@ -9,7 +9,7 @@ todo
 ## Arguments ##
 *    **files**    
 _positional arguments:_       
-`file_name`    file to open    
+`file_name`    file or files to open    
 _optional arguments:_    
   `-h, --help`   help message    
   `-f, --fixme`  show only FIXME    
