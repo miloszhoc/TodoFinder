@@ -2,8 +2,7 @@ import re
 import chardet
 
 
-# fixme self.assertRegex('# todo test', regex) shouldn't find anything
-class TodoSearcher:
+class TodoSearcherS:
     def __init__(self, todo: bool, fixme: bool, comment_sign: str):
         self._todo = todo
         self._fixme = fixme
