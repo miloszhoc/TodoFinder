@@ -7,7 +7,14 @@ from finder.todo_searcher_multi import TodoSearcherM
 
 class Api:
     @staticmethod
-    def find_in_file(files: list, todo: bool, fixme: bool):
+    def find_in_file(files: list, todo: bool, fixme: bool) -> None:
+        """
+        Finds todo and fixme in given file on files
+        :param files: list of paths to files which contains todos
+        :param todo: if True find todo
+        :param fixme: if True find fixme
+        :return: None
+        """
         for file in files:
             ext = '.' + file.split('.')[-1]
             try:
@@ -37,7 +44,16 @@ class Api:
                 print(e.message)
 
     @staticmethod
-    def find_in_catalog(ext: str, path, exclude, todo: bool, fixme: bool):
+    def find_in_catalog(ext: str, path: str, exclude: tuple, todo: bool, fixme: bool) -> None:
+        """
+        Find todo and fixme in given catalog.
+        :param ext: Files extension.
+        :param path: Path to catalog
+        :param exclude: Exclude given folders and files.
+        :param todo: if True find todo
+        :param fixme: if True find fixme
+        :return: None
+        """
         try:
             comment_sign = ext_to_comment_sign(ext.lower())
             if comment_sign['multi']:  # fixme same code as above

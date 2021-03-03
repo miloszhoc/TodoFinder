@@ -3,6 +3,12 @@ from exceptions.exceptions import *
 
 # todo: add more extensions
 def ext_to_comment_sign(ext: str):
+    """
+    Matches file extension with suitable comment sign.
+
+    :param ext: file extension with leading dot (eg '.py')
+    :return: single and multiline comment signs
+    """
     signs = {('.py', '.sh'): {'single': '#', 'multi': None},
              ('.java', '.c', '.cs', '.cpp', '.css', '.go', '.php', '.js'): {'single': '//',
                                                                             'multi': ('/*', '*/')},
@@ -12,8 +18,8 @@ def ext_to_comment_sign(ext: str):
                         'multi': None},
              ('.m',): {'single': '%',
                        'multi': ('%{', '%}')}}
-    for k, v in signs.items():
-        if ext in k:
-            return v
+    for extension, sign in signs.items():
+        if ext in extension:
+            return sign
     else:
         raise CommentSignNotFound
